@@ -48,22 +48,48 @@ CREATE TABLE [dbo].[SQL - Retail Sales Analysis_utf ](
 - **Null Value Check**: Check for any null values in the dataset and delete records with missing data.
 
 ```sql
-SELECT COUNT(*) FROM retail_sales;
-SELECT COUNT(DISTINCT customer_id) FROM retail_sales;
-SELECT DISTINCT category FROM retail_sales;
+-- Data Cleaning
 
-SELECT * FROM retail_sales
-WHERE 
-    sale_date IS NULL OR sale_time IS NULL OR customer_id IS NULL OR 
-    gender IS NULL OR age IS NULL OR category IS NULL OR 
-    quantity IS NULL OR price_per_unit IS NULL OR cogs IS NULL;
+--Extract Null Values
+	Select * from [dbo].[SQL - Retail Sales Analysis_utf ] 
+	Where 
+	transactions_id is null
+	OR 
+	sale_time is null
+	OR
+	
+	cogs is null
+	OR
+	total_sale is null
+-- Delete Null _Values from Transactions_Id Column
 
-DELETE FROM retail_sales
-WHERE 
-    sale_date IS NULL OR sale_time IS NULL OR customer_id IS NULL OR 
-    gender IS NULL OR age IS NULL OR category IS NULL OR 
-    quantity IS NULL OR price_per_unit IS NULL OR cogs IS NULL;
-```
+	Delete from [dbo].[SQL - Retail Sales Analysis_utf ]
+	Where 
+	transactions_id is null
+	OR 
+	sale_time is null
+	OR
+	
+	cogs is null
+	OR
+	total_sale is null
+
+-- Data exploration
+
+-- Total Transaction_id We have
+Select Count(*) from [dbo].[SQL - Retail Sales Analysis_utf ]
+
+-- How Many sales we have?
+Select SUM(total_sale) AS Total_sales from [dbo].[SQL - Retail Sales Analysis_utf ]
+
+--How to Get Unique Customer_id
+
+Select Count(Distinct customer_id) As Customer_id from [dbo].[SQL - Retail Sales Analysis_utf ]
+
+--Check Unique Categories
+
+Select DISTINCT Category from [dbo].[SQL - Retail Sales Analysis_utf ]
+
 
 ### 3. Data Analysis & Findings
 
